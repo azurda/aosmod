@@ -3305,6 +3305,11 @@ void Cmd_AddBot_f( gentity_t *ent ) {
 	trap_SendServerCommand( ent-g_entities, va( "print \"%s.\n\"", G_GetStringEdString( "MP_SVGAME", "ONLY_ADD_BOTS_AS_SERVER" ) ) );
 }
 
+void Cmd_Testcmd_f( gentity_t *ent) {
+  trap_SendServerCommand( ent-g_entities, va ("print \"Testing client command for fucking compatibility ^1purpose.\n\""));
+}
+
+
 /*
 =================
 ClientCommand
@@ -3359,6 +3364,7 @@ command_t commands[] = {
 //	{ "teamtask",			Cmd_TeamTask_f,				CMD_NOINTERMISSION },
 	{ "teamvote",			Cmd_TeamVote_f,				CMD_NOINTERMISSION },
 	{ "tell",				Cmd_Tell_f,					0 },
+	{ "testcmd",                            Cmd_Testcmd_f,                                  0 }, 
 	{ "thedestroyer",		Cmd_TheDestroyer_f,			CMD_CHEAT|CMD_ALIVE|CMD_NOINTERMISSION },
 	{ "t_use",				Cmd_TargetUse_f,			CMD_CHEAT|CMD_ALIVE },
 	{ "voice_cmd",			Cmd_VoiceCommand_f,			CMD_NOINTERMISSION },
