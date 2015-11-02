@@ -26,7 +26,7 @@ extern vec3_t gPainPoint;
 //==================================================================
 
 // the "gameversion" client command will print this plus compile date
-#define	GAMEVERSION	"basejka_mod"
+#define	GAMEVERSION	"aosmod"
 
 #define SECURITY_LOG "security.log"
 
