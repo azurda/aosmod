@@ -3309,6 +3309,27 @@ void Cmd_Testcmd_f( gentity_t *ent) {
   trap_SendServerCommand( ent-g_entities, va ("print \"Testing client command for fucking compatibility ^1purpose.\n\""));
 }
 
+void Cmd_Origin_f(gentity_t *ent){ 
+  int client_id = -1;
+  char arg1[MAX_STRING_CHARS];
+  trap_Argv(1, arg1, sizeof(arg1));
+  client_id = G_ClientNumberFromArg(arg1);
+
+  if(client_id == -1){
+    trap_SendServerCommand(ent-g_entities, va("print \"No se pudo encontrar al cliente\""));
+  }
+  if(client_id == -2){
+    trap_SendServerCommand(ent-g_entities, va("print \"ID ambigua\""));
+  }
+  if(client_id){
+    trap_SendServerCommand( ent-g_entities, va("print \"^1X:^7%d, ^1Y:^7%d, ^1Z:^7%d\n\"", (int) ent->client->ps.origin[0], (int) ent->client->ps.origin[1], (int) ent->client->ps.origin[2]));
+  }
+  else {
+    trap_SendServerCommand( ent-g_entities, va("print \"^1X:^7%d, ^1Y:^7%d, ^1Z:^7%d\n\"", (int) ent->client->ps.origin[0], (int) ent->client->ps.origin[1], (int) ent->client->ps.origin[2]));
+  }
+}
+
+
 
 /*
 =================
@@ -3355,6 +3376,7 @@ command_t commands[] = {
 	{ "noclip",				Cmd_Noclip_f,				CMD_CHEAT|CMD_ALIVE|CMD_NOINTERMISSION },
 	{ "notarget",			Cmd_Notarget_f,				CMD_CHEAT|CMD_ALIVE|CMD_NOINTERMISSION },
 	{ "npc",				Cmd_NPC_f,					CMD_CHEAT|CMD_ALIVE },
+	{ "origin",                             Cmd_Origin_f,                                   0 }, 
 	{ "say",				Cmd_Say_f,					0 },
 	{ "say_team",			Cmd_SayTeam_f,				0 },
 	{ "score",				Cmd_Score_f,				0 },
